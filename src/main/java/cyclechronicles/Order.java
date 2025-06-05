@@ -2,13 +2,20 @@ package cyclechronicles;
 
 /** An order for a bike shop. */
 public class Order {
+    Type biketype;
+    String customerName;
+
+    public Order(Type bike, String name){
+        biketype = bike;
+        customerName = name;
+    }
     /**
      * Determine the type of bike to be repaired.
      *
      * @return type of bicycle
      */
     public Type getBicycleType() {
-        throw new UnsupportedOperationException();
+       return this.biketype;
     }
 
     /**
@@ -17,6 +24,6 @@ public class Order {
      * @return name of customer
      */
     public String getCustomer() {
-        throw new UnsupportedOperationException();
+        return this.customerName;
     }
 }
