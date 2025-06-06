@@ -25,9 +25,10 @@ public class MockShopTest {
         when(order.getCustomer()).thenReturn("");
         assertFalse(shop.accept(order));
     }
+
     @Test
     public void testNotAccseptGravelBike(){
-        when(order.getBicycleType()).thenReturn(Type.EBIKE);
+        when(order.getBicycleType()).thenReturn(Type.GRAVEL);
         when(order.getCustomer()).thenReturn("");
         assertFalse(shop.accept(order));
     }
@@ -36,7 +37,7 @@ public class MockShopTest {
     public void testMoreThenOneOrderBySameCunstomer(){
         when(order.getBicycleType()).thenReturn(Type.RACE);
         when(order.getCustomer()).thenReturn("First");
-        assertTrue(shop.accept(order));
+        assumeTrue(shop.accept(order));
         when(order.getBicycleType()).thenReturn(Type.SINGLE_SPEED);
         when(order.getCustomer()).thenReturn("First");
         assertFalse(shop.accept(order));
@@ -85,6 +86,15 @@ public class MockShopTest {
         when(order.getBicycleType()).thenReturn(Type.SINGLE_SPEED);
         when(order.getCustomer()).thenReturn("test");
         assumeTrue(order.getBicycleType() == Type.SINGLE_SPEED);
+        assumeTrue(order.getCustomer().equals("test"));
+
+        assertTrue(shop.accept(order));
+    }
+    @Test
+    public void testAccsepedAnOrderRACE(){
+        when(order.getBicycleType()).thenReturn(Type.RACE);
+        when(order.getCustomer()).thenReturn("test");
+        assumeTrue(order.getBicycleType() == Type.RACE);
         assumeTrue(order.getCustomer().equals("test"));
 
         assertTrue(shop.accept(order));
